@@ -1,0 +1,21 @@
+.chart {
+  margin: auto;
+  position: relative;
+  width: 100%;
+  min-height: 300px;
+}
+.chart-xs {
+  min-height: 200px;
+}
+.chart-sm {
+  min-height: 252px;
+}
+.chart-lg {
+  min-height: 350px;
+}
+.chart-xl {
+  min-height: 500px;
+}
+.chart canvas {
+  max-width: 100%;
+}
