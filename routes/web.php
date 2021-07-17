@@ -25,7 +25,7 @@ use App\Http\Controllers\BlankController;
 |
 */
 
-Route::get('/', [BlankController::class, 'index']);
+Route::get('/', [BlankController::class, 'index'])->middleware('sso-web');
 
 Route::prefix('adminkit/pages')->group(function () {
     Route::get('/dashboard', [DashboardPageController::class, 'index']);
