@@ -8,7 +8,7 @@
                 Pages
             </li>
 
-            <li class="sidebar-item {{ is_active_url('/') }}">
+            <li class="sidebar-item {{ is_active_path('/') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ url('/') }}">
                     <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
                 </a>

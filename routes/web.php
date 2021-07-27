@@ -6,6 +6,11 @@ use App\Http\Controllers\AdminKit\Pages\DashboardPageController;
 use App\Http\Controllers\AdminKit\Pages\ProfilePageController;
 use App\Http\Controllers\AdminKit\Pages\BlankPageController;
 use App\Http\Controllers\AdminKit\Pages\ChartPageController;
+
+use App\Http\Controllers\AdminKit\Pages\SubNestedLv1Controller;
+use App\Http\Controllers\AdminKit\Pages\SubNestedLv2Controller;
+use App\Http\Controllers\AdminKit\Pages\SubNestedLv3Controller;
+
 use App\Http\Controllers\AdminKit\Components\ButtonController;
 use App\Http\Controllers\AdminKit\Components\FormController;
 use App\Http\Controllers\AdminKit\Components\CardsController;
@@ -32,6 +37,10 @@ Route::prefix('adminkit/pages')->group(function () {
     Route::get('/profile', [ProfilePageController::class, 'index']);
     Route::get('/blank', [BlankPageController::class, 'index']);
     Route::get('/chart', [ChartPageController::class, 'index']);
+
+    Route::get('/subnestedlv1', [SubNestedLv1Controller::class, 'index']);
+    Route::get('/subnestedlv2', [SubNestedLv2Controller::class, 'index']);
+    Route::get('/subnestedlv3', [SubNestedLv3Controller::class, 'index']);
 });
 
 Route::prefix('adminkit/ui')->group(function () {

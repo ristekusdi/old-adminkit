@@ -1,8 +1,8 @@
 <?php
 
-if (! function_exists('is_active_url')) {
-    function is_active_url($path)
+if (! function_exists('is_active_path')) {
+    function is_active_path($path)
     {
-        return request()->is($path) ? 'active' : '';
+        return request()->is($path) ? true : false;
     }
 }
