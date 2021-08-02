@@ -12,8 +12,8 @@
 
 1. Run `degit github:ristekusdi/adminkit your-great-project`.
 2. Go to `your-great-project` folder.
-3. Run `composer install`.
-4. Run `cp .env.example .env`.
+3. Run `cp .env.example .env`.
+4. Run `composer install`.
 5. Run `php artisan key:generate`.
 6. Run `php artisan serve`.
 
