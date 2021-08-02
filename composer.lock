@@ -2376,16 +2376,16 @@
         },
         {
             "name": "ristekusdi/sso-laravel",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ristekusdi/sso-laravel.git",
-                "reference": "28ed2f19a2a36a665a3a2a406ab08434b57c59a7"
+                "reference": "39fbdb6a00bb669c48928ff4948beee400ef8ebb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ristekusdi/sso-laravel/zipball/28ed2f19a2a36a665a3a2a406ab08434b57c59a7",
-                "reference": "28ed2f19a2a36a665a3a2a406ab08434b57c59a7",
+                "url": "https://api.github.com/repos/ristekusdi/sso-laravel/zipball/39fbdb6a00bb669c48928ff4948beee400ef8ebb",
+                "reference": "39fbdb6a00bb669c48928ff4948beee400ef8ebb",
                 "shasum": ""
             },
             "require": {
@@ -2432,9 +2432,9 @@
             ],
             "support": {
                 "issues": "https://github.com/ristekusdi/sso-laravel/issues",
-                "source": "https://github.com/ristekusdi/sso-laravel/tree/v1.0.2"
+                "source": "https://github.com/ristekusdi/sso-laravel/tree/v1.0.3"
             },
-            "time": "2021-07-26T06:42:42+00:00"
+            "time": "2021-08-02T06:22:04+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
