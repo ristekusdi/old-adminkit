@@ -8,8 +8,10 @@
 
 > Make sure you already install [degit](https://github.com/Rich-Harris/degit).
 
-1. Run `degit github:ristekusdi/adminkit`.
-2. Go to `adminkit` folder.
+> **Note**: `your-great-project` is an alias. You can change what you want!
+
+1. Run `degit github:ristekusdi/adminkit your-great-project`.
+2. Go to `your-great-project` folder.
 3. Run `composer install`.
 4. Run `cp .env.example .env`.
 5. Run `php artisan key:generate`.
