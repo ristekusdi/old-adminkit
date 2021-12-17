@@ -13,5 +13,6 @@
                     <i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
                 </a>
             </li>
+        </ul>
     </div>
 </nav>
