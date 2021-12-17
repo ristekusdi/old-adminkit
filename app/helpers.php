@@ -1,5 +1,7 @@
 <?php
 
+require_once 'menu_builder.php';
+
 if (! function_exists('is_active_path')) {
     function is_active_path($path)
     {
