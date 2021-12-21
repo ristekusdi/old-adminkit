@@ -41,6 +41,9 @@ Route::prefix('adminkit/pages')->group(function () {
     Route::get('/subnestedlv1', [SubNestedLv1Controller::class, 'index']);
     Route::get('/subnestedlv2', [SubNestedLv2Controller::class, 'index']);
     Route::get('/subnestedlv3', [SubNestedLv3Controller::class, 'index']);
+    Route::get('/subnestedlv3_item1', [SubNestedLv3Controller::class, 'item1']);
+    Route::get('/subnestedlv3_item2', [SubNestedLv3Controller::class, 'item2']);
+    Route::get('/subnestedlv3_item3', [SubNestedLv3Controller::class, 'item3']);
 });
 
 Route::prefix('adminkit/ui')->group(function () {

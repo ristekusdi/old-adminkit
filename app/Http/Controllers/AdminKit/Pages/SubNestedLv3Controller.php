@@ -11,4 +11,19 @@ class SubNestedLv3Controller extends Controller
     {
         return view('adminkit.pages.subnestedlv3');
     }
+
+    public function item1()
+    {
+        return view('adminkit.pages.subnestedlv3_item1');
+    }
+
+    public function item2()
+    {
+        return view('adminkit.pages.subnestedlv3_item2');
+    }
+
+    public function item3()
+    {
+        return view('adminkit.pages.subnestedlv3_item3');
+    }
 }

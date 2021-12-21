@@ -3,6 +3,7 @@
         <a class="sidebar-brand" href="{{ url('adminkit/pages/dashboard') }}">
             <span class="align-middle">AdminKit</span>
         </a>
+        {!! load_menu() !!}
         <ul class="sidebar-nav">
             <li class="sidebar-header">
                 Pages
