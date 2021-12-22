@@ -29,6 +29,7 @@
         },
         "files": [
             "app/helpers.php",
+            "app/adminkit_menu.php",
             "app/menu_builder.php"
         ]
     },

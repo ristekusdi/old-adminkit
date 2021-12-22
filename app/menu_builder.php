@@ -1,117 +1,5 @@
 <?php
 
-if (! function_exists('load_menu')) {
-    function load_menu()
-    {
-        $items = [
-            [
-                'link' => 'adminkit/pages/dashboard',
-                'text' => 'Dashboard',
-                'icon' => 'sliders'
-            ],
-            [
-                'link' => 'adminkit/pages/profile',
-                'text' => 'Profile',
-                'icon' => 'user'
-            ],
-            [
-                'link' => 'adminkit/pages/blank',
-                'text' => 'Blank',
-                'icon' => 'book'
-            ],
-            [
-                'link' => 'adminkit/pages/chart',
-                'text' => 'Chart',
-                'icon' => 'bar-chart-2'
-            ],
-            [
-                'link' => '#',
-                'text' => 'Nested Menu Lv. 1',
-                'icon' => 'corner-right-down',
-                'children' => [
-                    [
-                        'link' => 'adminkit/pages/subnestedlv1',
-                        'text' => 'Sub Nested Menu Lv. 1'
-                    ],
-                ]
-            ],
-            [
-                'link' => '#',
-                'text' => 'Nested Menu Lv. 2',
-                'icon' => 'corner-right-down',
-                'children' => [
-                    [
-                        'link' => '#',
-                        'text' => 'Two Levels',
-                        'children' => [
-                            [
-                                'link' => 'adminkit/pages/subnestedlv2',
-                                'text' => 'Item 1'
-                            ],
-                            [
-                                'link' => '#',
-                                'text' => 'Item 2'
-                            ]
-                        ]
-                    ]
-                ]
-            ],
-            [
-                'link' => '#',
-                'text' => 'Nested Menu Lv. 3',
-                'icon' => 'corner-right-down',
-                'children' => [
-                    [
-                        'link' => '#',
-                        'text' => 'Y Two Levels',
-                        'children' => [
-                            [
-                                'link' => 'adminkit/pages/subnestedlv3_item3',
-                                'text' => 'Y Item 1'
-                            ],
-                            [
-                                'link' => '#',
-                                'text' => 'Item 2'
-                            ]
-                        ]
-                    ],
-                    [
-                        'link' => '#',
-                        'text' => 'Three Levels',
-                        'children' => [
-                            [
-                                'link' => '#',
-                                'text' => 'X Item 1',
-                                'children' => [
-                                    [
-                                        'link' => 'adminkit/pages/subnestedlv3',
-                                        'text' => 'Item 1'
-                                    ],
-                                    [
-                                        'link' => '#',
-                                        'text' => 'Item 2'
-                                    ]
-                                ],
-                            ],
-                            [
-                                'link' => 'adminkit/pages/subnestedlv3_item2',
-                                'text' => 'Item 2'
-                            ]
-                        ]
-                    ],
-                    [
-                        'link' => 'adminkit/pages/subnestedlv3_item1',
-                        'text' => 'X Item 1'
-                    ]
-                ]
-            ]
-        ];
-
-        update_level_items($items);
-        return build_menu($items);
-    }
-}
-
 if (! function_exists('update_level_items')) {
     function update_level_items(&$items, $level = 1)
     {
@@ -130,12 +18,16 @@ if (! function_exists('build_menu')) {
         $menu = '<ul '.set_sidebar_id($id).' '.set_sidebar_class($items, $is_nested).'>';
 
         foreach ($items as $item) {
-            $menu .= '<li '.set_sidebar_item_class($item, $is_nested).'>
-                <a '.set_sidebar_link_class($item).' '.set_data_bs_attr($item).' '.set_href($item['link']).' '.set_aria_expanded($item).'>
-                    '.set_sidebar_link_text($item).'
-                </a>
-                '.(isset($item['children']) ? build_menu($item['children'], $is_nested = true, $id = $item['text']) : '').'
-            </li>';
+            if (isset($item['header'])) {
+                $menu .= '<li class="sidebar-header">'.$item['header'].'</li>';
+            } else {
+                $menu .= '<li '.set_sidebar_item_class($item, $is_nested).'>
+                    <a '.set_sidebar_link_class($item).' '.set_data_bs_attr($item).' '.set_href($item['link']).' '.set_aria_expanded($item).'>
+                        '.set_sidebar_link_text($item).'
+                    </a>
+                    '.(isset($item['children']) ? build_menu($item['children'], $is_nested = true, $id = $item['text']) : '').'
+                </li>';
+            }
         }
         $menu .= '</ul>';
         return $menu;
