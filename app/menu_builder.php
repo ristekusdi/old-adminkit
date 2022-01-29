@@ -1,5 +1,23 @@
 <?php
 
+if (! function_exists('build_tree')) {
+    function build_tree($elements, $parent = 0)
+    {
+        $branch = array();
+        foreach ($elements as $key => $element) {
+            if ($element['parent'] == $parent) {
+                $children = build_tree($elements, $element['id']);
+                if ($children) {
+                    $element['children'] = $children;
+                }
+                $branch[] = $element;
+            }
+        }
+
+        return $branch;
+    }
+}
+
 if (! function_exists('update_level_items')) {
     function update_level_items(&$items, $level = 1)
     {
