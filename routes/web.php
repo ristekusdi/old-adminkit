@@ -17,7 +17,10 @@ use App\Http\Controllers\AdminKit\Components\CardsController;
 use App\Http\Controllers\AdminKit\Components\TypographyController;
 use App\Http\Controllers\AdminKit\Components\IconsController;
 
-use App\Http\Controllers\BlankController;
+use App\Http\Controllers\HomeController;
+
+// AdminRBAC
+use App\Http\Controllers\AdminRBAC\MenuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,26 +33,35 @@ use App\Http\Controllers\BlankController;
 |
 */
 
-Route::get('/', [BlankController::class, 'index'])->middleware('sso-web');
-
-Route::prefix('adminkit/pages')->group(function () {
-    Route::get('/dashboard', [DashboardPageController::class, 'index']);
-    Route::get('/profile', [ProfilePageController::class, 'index']);
-    Route::get('/blank', [BlankPageController::class, 'index']);
-    Route::get('/chart', [ChartPageController::class, 'index']);
-
-    Route::get('/subnestedlv1', [SubNestedLv1Controller::class, 'index']);
-    Route::get('/subnestedlv2', [SubNestedLv2Controller::class, 'index']);
-    Route::get('/subnestedlv3', [SubNestedLv3Controller::class, 'index']);
-    Route::get('/subnestedlv3_item1', [SubNestedLv3Controller::class, 'item1']);
-    Route::get('/subnestedlv3_item2', [SubNestedLv3Controller::class, 'item2']);
-    Route::get('/subnestedlv3_item3', [SubNestedLv3Controller::class, 'item3']);
-});
-
-Route::prefix('adminkit/ui')->group(function () {
-    Route::get('/buttons', [ButtonController::class, 'index']);
-    Route::get('/forms', [FormController::class, 'index']);
-    Route::get('/cards', [CardsController::class, 'index']);
-    Route::get('/typography', [TypographyController::class, 'index']);
-    Route::get('/icons', [IconsController::class, 'index']);
+Route::middleware('sso-web')->group(function() {
+    Route::get('/', [HomeController::class, 'index']);
+    Route::get('/home', [HomeController::class, 'index']);
+    
+    // Admin RBAC
+    Route::prefix('admin-rbac')->group(function () {
+        Route::get('/menus', [MenuController::class, 'index']);
+        Route::post('/menus/refresh', [MenuController::class, 'refresh'])->name('admin-rbac.menus.refresh');
+    });
+    
+    Route::prefix('adminkit/pages')->group(function () {
+        Route::get('/dashboard', [DashboardPageController::class, 'index']);
+        Route::get('/profile', [ProfilePageController::class, 'index']);
+        Route::get('/blank', [BlankPageController::class, 'index']);
+        Route::get('/chart', [ChartPageController::class, 'index']);
+    
+        Route::get('/subnestedlv1', [SubNestedLv1Controller::class, 'index']);
+        Route::get('/subnestedlv2', [SubNestedLv2Controller::class, 'index']);
+        Route::get('/subnestedlv3', [SubNestedLv3Controller::class, 'index']);
+        Route::get('/subnestedlv3_item1', [SubNestedLv3Controller::class, 'item1']);
+        Route::get('/subnestedlv3_item2', [SubNestedLv3Controller::class, 'item2']);
+        Route::get('/subnestedlv3_item3', [SubNestedLv3Controller::class, 'item3']);
+    });
+    
+    Route::prefix('adminkit/ui')->group(function () {
+        Route::get('/buttons', [ButtonController::class, 'index']);
+        Route::get('/forms', [FormController::class, 'index']);
+        Route::get('/cards', [CardsController::class, 'index']);
+        Route::get('/typography', [TypographyController::class, 'index']);
+        Route::get('/icons', [IconsController::class, 'index']);
+    });    
 });
