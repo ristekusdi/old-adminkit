@@ -30,7 +30,9 @@
         "files": [
             "app/helpers.php",
             "app/adminkit_menu.php",
-            "app/menu_builder.php"
+            "app/app_menu.php",
+            "app/menu_builder.php",
+            "app/nested_sortable.php"
         ]
     },
     "autoload-dev": {
