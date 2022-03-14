@@ -33,7 +33,9 @@ use App\Http\Controllers\AdminRBAC\MenuController;
 |
 */
 
-Route::middleware('sso-web')->group(function() {
+require __DIR__.'/sso.php';
+
+Route::middleware('imissu-web')->group(function() {
     Route::get('/', [HomeController::class, 'index']);
     Route::get('/home', [HomeController::class, 'index']);
     

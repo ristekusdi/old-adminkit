@@ -37,8 +37,13 @@ return [
 
     'guards' => [
         'web' => [
-            'driver' => 'sso-web',
+            'driver' => 'session',
             'provider' => 'users',
+        ],
+
+        'imissu-web' => [
+            'driver' => 'imissu-web',
+            'provider' => 'imissu-web',
         ],
 
         'api' => [
@@ -66,15 +71,15 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'sso-users',
-            'model' => RistekUSDI\SSO\Models\User::class,
+        'imissu-web' => [
+            'driver' => 'imissu-web',
+            'model' => RistekUSDI\SSO\Models\Web\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\User::class,
+        ],
     ],
 
     /*
