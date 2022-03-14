@@ -77,7 +77,12 @@
 @section('content')
 <h1 class="h3 mb-3">Menu Page</h1>
 <div class="row">
-	<div class="col-12">
+	<div class="col">
+		<a href="#" class="btn btn-primary float-end mb-2">Tambah</a>
+	</div>
+</div>
+<div class="row">
+	<div class="col">
 		{!! load_nested_sortable() !!}
 		<input type="hidden" name="url_refresh_sort_menu" value="{{ route('admin-rbac.menus.refresh') }}">
 	</div>
