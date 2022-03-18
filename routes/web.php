@@ -21,6 +21,7 @@ use App\Http\Controllers\HomeController;
 
 // AdminRBAC
 use App\Http\Controllers\AdminRBAC\MenuController;
+use App\Http\Controllers\AdminRBAC\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,8 @@ Route::middleware('imissu-web')->group(function() {
     Route::prefix('admin-rbac')->group(function () {
         Route::get('/menus', [MenuController::class, 'index']);
         Route::post('/menus/refresh', [MenuController::class, 'refresh'])->name('admin-rbac.menus.refresh');
+
+        Route::get('/roles', [RoleController::class, 'index']);
     });
     
     Route::prefix('adminkit/pages')->group(function () {
