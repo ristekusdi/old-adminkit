@@ -73,7 +73,7 @@ return [
     'providers' => [
         'imissu-web' => [
             'driver' => 'imissu-web',
-            'model' => RistekUSDI\SSO\Models\Web\User::class,
+            'model' => App\Models\SSO\Web\User::class,
         ],
 
         'users' => [

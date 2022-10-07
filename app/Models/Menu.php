@@ -9,13 +9,6 @@ class Menu extends Model
     protected $table = 'rbac_menu';
     protected $primaryKey = 'id_menu';
     protected $appends = array('id');
-    
-    /**
-     * Indicates if the model should be timestamped.
-     *
-     * @var bool
-     */
-    public $timestamps = false;
 
     public function getIdAttribute()
     {

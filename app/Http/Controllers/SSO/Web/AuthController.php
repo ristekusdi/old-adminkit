@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\SSO;
+namespace App\Http\Controllers\SSO\Web;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use RistekUSDI\SSO\Exceptions\CallbackException;
-use RistekUSDI\SSO\Facades\IMISSUWeb;
+use RistekUSDI\SSO\Laravel\Facades\IMISSUWeb;
 
 class AuthController extends Controller
 {
@@ -30,9 +29,10 @@ class AuthController extends Controller
      */
     public function logout()
     {
+        $token = IMISSUWeb::retrieveToken();
         IMISSUWeb::forgetToken();
 
-        $url = IMISSUWeb::getLogoutUrl();
+        $url = IMISSUWeb::getLogoutUrl($token['id_token']);
         return redirect($url);
     }
 
@@ -50,7 +50,7 @@ class AuthController extends Controller
             $error = $request->input('error_description');
             $error = ($error) ?: $request->input('error');
 
-            throw new CallbackException($error);
+            abort(401, $error);
         }
 
         // Check given state to mitigate CSRF attack
@@ -58,7 +58,7 @@ class AuthController extends Controller
         if (empty($state) || ! IMISSUWeb::validateState($state)) {
             IMISSUWeb::forgetState();
 
-            throw new CallbackException('Invalid state');
+            abort(401, 'Invalid state');
         }
 
         // Change code for token
@@ -66,16 +66,17 @@ class AuthController extends Controller
         if (! empty($code)) {
             $token = IMISSUWeb::getAccessToken($code);
 
-            if (Auth::guard('imissu-web')->validate($token)) {
+            try {
+                Auth::guard('imissu-web')->validate($token);
                 $url = config('sso.redirect_url', '/admin');
                 return redirect()->intended($url);
-            } else {
+            } catch (\Exception $e) {
                 // For case like user doesn't have token
                 // or user doesn't have access to certain client app
-                throw new CallbackException('Unauthorized', 403);
+                abort($e->getCode(), $e->getMessage());
             }
         }
 
-        return redirect(route('sso.login'));
+        return redirect(route('sso.web.login'));
     }
 }

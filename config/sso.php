@@ -2,9 +2,16 @@
 
 return [
     /**
-     * SSO Url
+     * SSO Admin URL
      *
-     * Generally https://your-server.com/auth
+     * Generally https://your-admin-server.com
+     */
+    'admin_url' => env('SSO_ADMIN_URL', ''),
+
+    /**
+     * SSO URL
+     *
+     * Generally https://your-server.com
      */
     'base_url' => env('SSO_BASE_URL', ''),
 
@@ -37,40 +44,40 @@ return [
     'client_secret' => env('SSO_CLIENT_SECRET', null),
 
     /**
-     * We can cache the OpenId Configuration
-     * The result from /realms/{realm-name}/.well-known/openid-configuration
-     *
-     * @link https://www.keycloak.org/docs/3.2/securing_apps/topics/oidc/oidc-generic.html
-     */
-    'cache_openid' => env('SSO_CACHE_OPENID', false),
-
-    /**
-     * Page to redirect after callback if there's no "intent"
-     *
-     * @see RistekUSDI\SSO\Controllers\AuthController::callback()
-     */
-    'redirect_url' => '/',
-
-    /**
-     * Routes name config.
-     */
-    'routes' => [
-        'login' => 'sso.login',
-        'callback' => 'sso.callback',
-        'logout' => 'sso.logout',
-    ],
-
-    /**
-     * Load guard class.
-     */
-    'guards' => [
-        'web' => RistekUSDI\SSO\Auth\Guard\WebGuard::class,
-    ],
-
-    /**
     * GuzzleHttp Client options
     *
     * @link http://docs.guzzlephp.org/en/stable/request-options.html
     */
-   'guzzle_options' => [],
+    'guzzle_options' => [],
+    
+    'web' => [
+        /**
+         * Page to redirect after callback if there's no "intent"
+         *
+         * @see App\Http\Controllers\SSO\Web\AuthController::callback()
+         */
+        'redirect_url' => '/admin',
+
+        /**
+         * Routes name config.
+         */
+        'routes' => [
+            'login' => 'sso.web.login',
+            'callback' => 'sso.web.callback',
+            'logout' => 'sso.web.logout',
+        ],
+    ],
+    'token' => [
+        'load_user_from_database' => false,
+
+        'user_provider_custom_retrieve_method' => null,
+
+        'user_provider_credential' => 'username',
+
+        'token_principal_attribute' => 'preferred_username',
+
+        'append_decoded_token' => false,
+
+        'allowed_resources' => null
+    ]
 ];
