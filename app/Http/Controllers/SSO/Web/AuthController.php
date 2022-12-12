@@ -29,15 +29,12 @@ class AuthController extends Controller
      */
     public function logout()
     {
-        $token = IMISSUWeb::retrieveToken();
-        IMISSUWeb::forgetToken();
-
-        $url = IMISSUWeb::getLogoutUrl($token['id_token']);
+        $url = IMISSUWeb::getLogoutUrl();
         return redirect($url);
     }
 
     /**
-     * SSO callback page
+     * Keycloak callback page
      *
      * @throws CallbackException
      *
@@ -68,7 +65,7 @@ class AuthController extends Controller
 
             try {
                 Auth::guard('imissu-web')->validate($token);
-                $url = config('sso.redirect_url', '/admin');
+                $url = config('sso.web.redirect_url', '/admin');
                 return redirect()->intended($url);
             } catch (\Exception $e) {
                 // For case like user doesn't have token
