@@ -138,14 +138,9 @@
                 </div>
             </li>
             <li class="nav-item dropdown">
-                <a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
-                    <i class="align-middle" data-feather="settings"></i>
+                <a class="nav-icon pe-md-0 dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="img/avatars/avatar.jpg" class="avatar img-fluid rounded" alt="{{ auth('imissu-web')->user()->family_name }}">
                 </a>
-
-                <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
-                    <img src="{{ asset('img/avatars/avatar.jpg') }}" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark">{{ auth('imissu-web')->user()->family_name }}</span>
-                </a>
-
                 <div class="dropdown-menu dropdown-menu-end">
                     <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
                     <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i> Analytics</a>

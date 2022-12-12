@@ -14,9 +14,9 @@
 
 	<title>Blank Page | AdminKit Demo</title>
 
-	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @stack('style')
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+	@vite('resources/js/app.js')
+    @stack('style')
 </head>
 
 <body>
@@ -24,7 +24,7 @@
 		@include('components.nav')
 
 		<div class="main">
-			@include('components.sidebar')
+			@include('components.header')
 
 			<main class="content">
 				<div class="container-fluid p-0">
@@ -36,7 +36,6 @@
 		</div>
 	</div>
 
-	<script src="{{ asset('js/app.js') }}"></script>
     @stack('script')
 </body>
 
